@@ -374,16 +374,16 @@ public:
 
     //Print sudoku
     void Show () {
-        cout << "-----------" << endl;
+        fout << "-----------" << endl;
         for (int i = 0; i<9; i++) {
             for (int j = 0; j < 9; j++) {
                 if  (field[i][j]==0)
-                    cout<<"_";
+                    fout<<"_";
                 else
-                    cout << field[i][j];
+                    fout << field[i][j];
 
             }
-            cout << "\n";
+            fout << "\n";
         }
     }
 

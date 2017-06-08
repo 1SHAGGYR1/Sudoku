@@ -23,7 +23,18 @@ int t[9][9] =
     {1,1,1,0,0,0,1,1,1},
 };
 
-
+int t2[9][9] =
+{
+    {1,1,1,0,0,0,1,1,1},
+    {1,1,1,0,0,0,1,1,1},
+    {1,1,1,0,0,0,1,1,1},
+    {0,0,0,1,1,1,0,0,0},
+    {0,0,0,1,1,1,0,0,0},
+    {0,0,0,1,1,1,0,0,0},
+    {1,1,1,0,0,0,1,1,1},
+    {1,1,1,0,0,0,1,1,1},
+    {1,1,1,0,0,0,1,1,1},
+};
 void MainWindow::colorFill(int i, int j)
 {
     if (t[i][j])
@@ -40,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->nextDec->setEnabled(false);
     ui->prevDec->setEnabled(false);;
     ui->pbProgress->hide();
-    ui->label->hide();
+    //ui->label->hide();
     ui->centralWidget->setStyleSheet("background-color:white;");
 
     signalMapper = new QSignalMapper(this);
@@ -158,7 +169,7 @@ void Sudoku::Generate(){
 #pragma endregion
 
     cout<<endl;
-    Show();
+    //Show();
     cout<<endl;
 }
 
@@ -240,7 +251,7 @@ int solShown = 0, maxSolShown =0;
 void MainWindow::on_decisions_clicked()
 {
     sudoku.Set_Empty ();
-    QFont newFont("Courier", 200, QFont::Bold, true);
+
     if (on_checkCells_clicked())
     {
         sudoku.solutions.clear();
@@ -254,19 +265,11 @@ void MainWindow::on_decisions_clicked()
             ui->nextDec->setEnabled(false);
         else
             ui->nextDec->setEnabled(true);
+
         for (int i=0;i<9;i++)
             for (int j =0;j<9;j++)
-            {
-
-                if (table[i][j]->text() == "")
                     solTable[i][j]->setText(QString::number(sudoku.solutions[solShown][i*9+j]));
-                else
-                {
-                    solTable[i][j]->setText(table[i][j]->text());
-                    //
-                }
 
-            }
         QMessageBox::information(this, "Количество решений", result , QMessageBox::Ok);
     }
 
@@ -289,16 +292,8 @@ void MainWindow::on_prevDec_clicked()
     ui->label->setText("РЕШЕНИЕ " + QString::number(solShown+1) + " ИЗ " + QString::number(maxSolShown));
     for (int i=0;i<9;i++)
         for (int j =0;j<9;j++)
-        {
-            if (table[i][j]->text() == "")
                 solTable[i][j]->setText(QString::number(sudoku.solutions[solShown][i*9+j]));
-            else
-            {
-                solTable[i][j]->setText(table[i][j]->text());
-                //
-            }
 
-        }
 }
 
 void MainWindow::on_nextDec_clicked()
@@ -309,16 +304,10 @@ void MainWindow::on_nextDec_clicked()
     if (solShown != 0)
         ui->prevDec->setEnabled(true);
     ui->label->setText("РЕШЕНИЕ " + QString::number(solShown+1) + " ИЗ " + QString::number(maxSolShown));
+
     for (int i=0;i<9;i++)
         for (int j =0;j<9;j++)
-        {
-            if (table[i][j]->text() == "")
-                solTable[i][j]->setText(QString::number(sudoku.solutions[solShown][i*9+j]));
-            else
-            {
                 solTable[i][j]->setText(table[i][j]->text());
-                //
-            }
 
-        }
+
 }
