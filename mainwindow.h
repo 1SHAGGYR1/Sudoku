@@ -28,12 +28,15 @@ private:
 public slots:
 
 private slots:
-   void tEdited(const QString & cell);
-
-   void on_generate_clicked();
-   void on_checkCells_clicked();
-   void on_clearField_clicked();
-   void on_decisions_clicked();
+    void tEdited(const QString & cell);
+    void colorFill(int i, int j);
+    void on_generate_clicked();
+    bool on_checkCells_clicked();
+    void on_clearField_clicked();
+    void on_decisions_clicked();
+    void on_pushButton_clicked();
+    void on_prevDec_clicked();
+    void on_nextDec_clicked();
 };
 
 #endif // MAINWINDOW_H
