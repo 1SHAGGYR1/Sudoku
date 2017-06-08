@@ -23,18 +23,6 @@ int t[9][9] =
     {1,1,1,0,0,0,1,1,1},
 };
 
-int t2[9][9] =
-{
-    {1,1,1,0,0,0,1,1,1},
-    {1,1,1,0,0,0,1,1,1},
-    {1,1,1,0,0,0,1,1,1},
-    {0,0,0,1,1,1,0,0,0},
-    {0,0,0,1,1,1,0,0,0},
-    {0,0,0,1,1,1,0,0,0},
-    {1,1,1,0,0,0,1,1,1},
-    {1,1,1,0,0,0,1,1,1},
-    {1,1,1,0,0,0,1,1,1},
-};
 void MainWindow::colorFill(int i, int j)
 {
     if (t[i][j])
@@ -42,6 +30,7 @@ void MainWindow::colorFill(int i, int j)
     else
         table[i][j]->setStyleSheet("QLineEdit { background-color: white ; font: 15pt Eras Bold ITC;} QLineEdit:focus {border-style: solid; border-width: 4px; border-color: grey;}");
 }
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -307,7 +296,7 @@ void MainWindow::on_nextDec_clicked()
 
     for (int i=0;i<9;i++)
         for (int j =0;j<9;j++)
-                solTable[i][j]->setText(table[i][j]->text());
+                solTable[i][j]->setText(QString::number(sudoku.solutions[solShown][i*9+j]));
 
 
 }
